@@ -129,7 +129,7 @@ The following findings are expected when the API returns its standard 10-record 
 |---|---|
 | Total customer records | 10 |
 | Unique cities | 10 |
-| DataFrame shape | 10 rows × 13 columns |
+| DataFrame shape | 10 rows × 12 columns |
 | Customer records per city | 1 each |
 | Latitude and longitude | Floating-point values |
 | Python and pandas city counts | Matching results |
@@ -168,12 +168,23 @@ After running the notebook, the `output/` directory contains:
 
 | File | Description |
 |---|---|
-| `customers.csv` | Flattened customer records with 13 columns |
+| `customers.csv` | Flattened customer records with 12 columns |
 | `city_counts.csv` | Customer counts grouped by city |
 | `customer_distribution.png` | Bar chart of customer counts by city |
 | `email_domain_distribution.png` | Bar chart of customer counts by email top-level domain |
 
-## 9. How to Run the Project
+## 9. Key Findings
+
+1. **Customer and city distribution:** The API returned 10 customer records representing 10 unique cities. Each city had one customer record, meaning the sample showed no concentration of customers in any particular city.
+
+2. **Email domain distribution:** The email addresses used multiple domains, including `biz`, `info`, `org`, `com`, and `net`. Grouping customers by email domain demonstrated how Python dictionaries and pandas can identify patterns in categorical data. However, email domains do not indicate where customers live.
+
+3. **Data transformation and validation:** The nested JSON records were successfully flattened into a DataFrame containing 10 rows and 12 columns. Latitude and longitude were converted to floating-point values, and pandas city counts agreed with the counts calculated using plain Python dictionaries.
+
+**Business implication:** The analysis demonstrates how API data can be transformed into useful summaries and visualisations. However, because the dataset contains only 10 synthetic records, it cannot support reliable regional marketing decisions for Pesa Pulse. A larger, representative dataset containing verified customer locations would be required for that purpose.
+
+
+## 10. How to Run the Project
 
 ### Prerequisites
 
@@ -195,12 +206,9 @@ python -m pip install requests pandas matplotlib
 6. Confirm that the pandas validation passes.
 7. Check the `output/` directory for the generated CSV files and charts.
 
-An active internet connection is required to retrieve the API data.
+NB - An active internet connection is required to retrieve the API data.
 
-## 10. Conclusion
+## 11. Conclusion
 
 This project demonstrates a complete introductory data analysis workflow, from retrieving JSON through an API to exploring nested structures, extracting attributes, performing aggregations, validating results, exporting CSV files, and generating visualisations.
 
-It reinforces the importance of understanding raw data before analysing it and of validating independently calculated results.
-
-For a real fintech application, the next step would be to analyse a larger, authorised customer dataset with validated geographic information, stronger data-quality checks, and appropriate privacy controls before making marketing recommendations.
